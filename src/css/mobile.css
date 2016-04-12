@@ -1,0 +1,46 @@
+body{
+	background-color: white;
+	color:black;
+	font-family: 'Oswald', sans-serif;
+	font-size:34px;
+}
+
+.mobile_key{
+	position: absolute;
+    top: 22%;
+	width: 500px;
+    height: 500px;
+    margin: auto;
+}
+
+input[type="number"]{ height: 2em; }
+
+.key{
+	position: absolute;
+	width: 200px;
+    border: solid;
+    padding: 2px;
+    left: 32%;
+    top: 16%;
+    height: 2em;
+    vertical-align: middle;
+}
+
+.submit{
+	position: absolute;
+	width: 200px;
+	left: 33%;
+    top: 50%;
+}
+
+.waiting{
+	display: none;
+}
+
+.answer{
+	display: none;
+}
+
+.results{
+	display: none;
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Socket.io</title>
+        <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=0.8, minimum-scale=0.8, user-scalable=no">
+        <link rel="stylesheet" href="css/reset.css">
+        <link rel="stylesheet" href="css/mobile.css">
+    </head>
+    <body>
+    
+    <form action="#" class="mobile_key">
+        <input type="number" class="key">
+        <input type="submit" class="submit">
+    </form>
+
+    <div class="waiting">
+        <h1>Waiting for other players</h1>
+    </div>
+    
+    <div class="answer answers-0">
+        <div class="choice" name="a"><p>A</p></div>
+        <div class="choice" name="b"><p>B</p></div>
+    </div>
+    <div class="answer answers-1">
+        <div class="choice" name="a"><p>A</p></div>
+        <div class="choice" name="b"><p>B</p></div>
+    </div>
+    <div class="answer answers-2">
+        <div class="choice" name="a"><p>A</p></div>
+        <div class="choice" name="b"><p>B</p></div>
+    </div>
+    <div class="answer answers-3">
+        <div class="choice" name="a"><p>A</p></div>
+        <div class="choice" name="b"><p>B</p></div>
+    </div>
+    
+    <div class="results">
+        <h1>The end !</h1>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="js/libs/modernizr-custom.js"></script>
+    <script type="text/javascript" src="js/libs/jquery-2.2.0.min.js"></script>
+    <script type="text/javascript" src="js/app/mobile.js"></script>
+    </body>
+</html>
