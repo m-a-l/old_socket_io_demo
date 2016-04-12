@@ -3,10 +3,10 @@ var express = require('express'),
     app     = express(),
     server  = require('http').Server(app),
     io      = require('socket.io').listen(server),
-    port    =  8080;
+    port    =  process.env.PORT;
 
 //process.env.PORT ||
-app.use(process.env.PORT || express.static('src')); // allows to import css images and javascript
+app.use(express.static('src')); // allows to import css images and javascript
 
 server.listen( port, function () {
   console.log('Example app listening on port 8080!');
@@ -32,6 +32,7 @@ pickit.results = {};
 
 io.sockets.on('connection', function (socket){
 	console.log('connection');
+    console.log('socket', socket.id);
 
     socket.on('desktop-key', function(key) {
         if(pickit.key == ''){
