@@ -6,7 +6,7 @@ var express = require('express'),
     port    =  8080;
 
 //process.env.PORT ||
-app.use(express.static('src')); // allows to import css images and javascript
+app.use(rocess.env.PORT || express.static('src')); // allows to import css images and javascript
 
 server.listen( port, function () {
   console.log('Example app listening on port 8080!');
