@@ -16,12 +16,12 @@ app.get('/', function (req, res) {
   res.sendfile(__dirname + '/index.html');
 });
 ///////////////////////////////////////////////////////////////
-//Connection variables
+// variables
 var pickit = {};
 
 pickit.key     = '';
 pickit.players = {};
-pickit.players_number = 2;
+pickit.players_number = 3;
 
 pickit.questions = ['question 1', 'question 2', 'question 3', 'question 4'];
 pickit.current_question = 0;
@@ -31,14 +31,15 @@ pickit.results = {};
 
 
 io.sockets.on('connection', function (socket){
-	console.log('connection');
-    console.log('socket', socket.id);
+	// console.log('connection');
+ //    console.log('socket', socket.id);
 
     socket.on('desktop-key', function(key) {
         if(pickit.key == ''){
             pickit.key = key;
         }
         else{
+            pickit.number_of_answers=0;
             pickit.current_question = 0;
             var size = Object.keys(pickit.players).length;
             for(var i=0; i<size;i++){
@@ -46,6 +47,7 @@ io.sockets.on('connection', function (socket){
             }
             pickit.players = {};
             pickit.key = key;
+
         }
 
 
@@ -75,14 +77,15 @@ io.sockets.on('connection', function (socket){
     	}
         console.log(' mobile key : ' + mobile_key);
 
-        console.log(pickit.players);
+        // console.log(pickit.players);
     });
 
 
 	socket.on('connected', function(player){
     	pickit.players['player_'+player.number] = player;
+        var size = Object.keys(pickit.players).length;
 
-    	if(pickit.players['player_'+player.number].number+1 == pickit.players_number){
+    	if(size == pickit.players_number){
     		console.log('everybody here !');
     		questions(pickit.current_question);
     	}
@@ -90,6 +93,8 @@ io.sockets.on('connection', function (socket){
 
     socket.on('answer', function(player){
     	pickit.number_of_answers++;
+
+        console.log('player_'+pickit.players['player_'+player.number].number+':'+pickit.number_of_answers);
     	pickit.players['player_'+player.number] = player;
 
     	if(pickit.number_of_answers == pickit.players_number){
