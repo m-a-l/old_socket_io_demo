@@ -1,0 +1,13 @@
+{
+  "name": "node-sample",
+  "description": "Our sample Node to Heroku app",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.13.4",
+    "modernizr": "^3.3.1",
+    "socket.io": "^1.4.5"
+  }
+}
