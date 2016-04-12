@@ -1,5 +1,5 @@
 {
-  "name": "node-sample",
+  "name": "pickit",
   "description": "Our sample Node to Heroku app",
   "main": "server.js",
   "scripts": {
