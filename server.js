@@ -27,6 +27,7 @@ pickit.number_of_answers = 0;
 
 pickit.results = {};
 
+console.log(pickit.players)
 
 io.sockets.on('connection', function (socket){
 	console.log('connection');
