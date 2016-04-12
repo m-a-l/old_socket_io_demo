@@ -23,6 +23,11 @@ socket.on('access-granted', function(player, pickit){
 	socket.emit('connected', current_player);
 });
 
+socket.on('access-denied', function(player, pickit){
+	$('.waiting').hide();
+	$('.mobile_key').show();
+});
+
 socket.on('question', function(question, number){
 	$('.waiting').hide();
 	

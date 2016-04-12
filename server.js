@@ -2,11 +2,13 @@
 var express = require('express'),
     app     = express(),
     server  = require('http').Server(app),
-    io      = require('socket.io').listen(server);
+    io      = require('socket.io').listen(server),
+    port    =  8080;
 
+//process.env.PORT ||
 app.use(express.static('src')); // allows to import css images and javascript
 
-server.listen(process.env.PORT || 8080, function () {
+server.listen( port, function () {
   console.log('Example app listening on port 8080!');
 });
 
@@ -27,25 +29,33 @@ pickit.number_of_answers = 0;
 
 pickit.results = {};
 
-console.log(pickit.players)
 
 io.sockets.on('connection', function (socket){
 	console.log('connection');
-    console.log('socket', socket.id);
 
     socket.on('desktop-key', function(key) {
+        if(pickit.key == ''){
+            pickit.key = key;
+        }
+        else{
+            pickit.current_question = 0;
+            var size = Object.keys(pickit.players).length;
+            for(var i=0; i<size;i++){
+                io.to(pickit.players['player_'+i].id).emit('access-denied', pickit.players['player_'+i]);
+            }
+            pickit.players = {};
+            pickit.key = key;
+        }
 
-    	pickit.key = key;
-        console.log('key : ' + key);
 
     });
 
     socket.on('mobile-key', function(mobile_key) {
-
     	if(pickit.key == mobile_key){
     		var size = Object.keys(pickit.players).length;
     		if(size<pickit.players_number){
     			pickit.players['player_'+size]         = {};
+                pickit.players['player_'+size].key     = mobile_key;
     			pickit.players['player_'+size].id      = socket.id;
     			pickit.players['player_'+size].number  = size;
     			pickit.players['player_'+size].answers = {};
@@ -64,7 +74,9 @@ io.sockets.on('connection', function (socket){
     	}
         console.log(' mobile key : ' + mobile_key);
 
+        console.log(pickit.players);
     });
+
 
 	socket.on('connected', function(player){
     	pickit.players['player_'+player.number] = player;
