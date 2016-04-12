@@ -6,7 +6,7 @@ var express = require('express'),
 
 app.use(express.static('src')); // allows to import css images and javascript
 
-server.listen(8080, function () {
+server.listen(process.env.PORT || 8080, function () {
   console.log('Example app listening on port 8080!');
 });
 
